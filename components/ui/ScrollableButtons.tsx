@@ -59,7 +59,7 @@ const ScrollableButtons = ({ buttonArr }: ScrollableButtonsProps) => {
         {buttonArr.map((button, index) => (
           <li
             key={index}
-            className={`${selectedButton === index ? "bg-button-selected text-white" : "bg-container"} w-fit shrink-0 whitespace-nowrap py-2 px-6 rounded-md cursor-pointer`}
+            className={`${selectedButton === index ? "bg-button-selected text-white" : "bg-container"} w-fit shrink-0 whitespace-nowrap py-1 md:py-2 px-4 md:px-6 rounded-md cursor-pointer`}
             onClick={() => setSelectedButton(index)}
           >
             {button}
