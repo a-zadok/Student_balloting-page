@@ -3,22 +3,31 @@ import HostelOverview from "../../../../features/admin/components/hostel-overvie
 
 export default function AdminDashboard() {
   return (
-    <section className="flex flex-col gap-4 py-8">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-xl md:text-2xl font-bold">
-          Welcome Back, Mrs Adeyemi
-        </h2>
-        <p className="md:text-lg">
-          Here&apos;s what&apos;s happening with the hostel allocation.
-        </p>
-      </div>
-      <div className="md:hidden flex flex-col gap-2">
-        <StatCard value={640} label="Total number of rooms" />
-        <StatCard value={428} label="Total number of allocated rooms" />
-        <StatCard value={212} label="Total number of allocated rooms" />
+    <section className="flex gap-8 py-8">
+      <div className="flex min-w-0 flex-1 flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl font-bold md:text-2xl">
+            Welcome Back, Mrs Adeyemi
+          </h2>
+          <p className="md:text-lg">
+            Here&apos;s what&apos;s happening with the hostel allocation.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-2 lg:hidden">
+          <StatCard value={640} label="Total number of rooms" />
+          <StatCard value={428} label="Total number of allocated rooms" />
+          <StatCard value={212} label="Total number of available rooms" />
+        </div>
+
+        <HostelOverview />
       </div>
 
-      <HostelOverview />
+      <aside className="hidden lg:flex w-full max-w-xs shrink-0 flex-col gap-4">
+        <StatCard value={640} label="Total number of rooms" />
+        <StatCard value={428} label="Total number of allocated rooms" />
+        <StatCard value={212} label="Total number of available rooms" />
+      </aside>
     </section>
   );
 }
