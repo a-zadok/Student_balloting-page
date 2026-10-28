@@ -2,6 +2,7 @@
 import { BedSingle, House, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { logout } from "@/app/actions/auth";
 
 interface SidebarProps {
   setIsSidebarOpen: () => void;
@@ -56,10 +57,12 @@ export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
           </div>
         </div>
 
-        <button className="hover:bg-button/40 flex gap-4 mb-4 mx-6 p-4 rounded-md cursor-pointer">
-          <LogOut />
-          Logout
-        </button>
+        <form action={logout} className="mb-4 mx-6">
+          <button className="hover:bg-button/40 w-full flex gap-4 p-4 rounded-md cursor-pointer">
+            <LogOut />
+            Logout
+          </button>
+        </form>
       </div>
     </aside>
   );

@@ -1,14 +1,18 @@
 import StatCard from "../../../../components/ui/StatCard";
 import BlockOverview from "../../../../features/admin/components/BlockOverview";
 import HostelOverview from "../../../../features/admin/components/HostelOverview";
+import { requireRole } from "@/lib/session";
+export const instant = false;
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const me = await requireRole("admin");
+
   return (
     <section className="flex min-w-0 gap-8 py-8">
       <div className="flex min-w-0 flex-1 flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-bold md:text-2xl">
-            Welcome Back, Mrs Adeyemi
+            Welcome Back, {me.admin?.first_name} {me.admin?.last_name}
           </h2>
           <p className="md:text-lg">
             Here&apos;s what&apos;s happening with the hostel allocation.
