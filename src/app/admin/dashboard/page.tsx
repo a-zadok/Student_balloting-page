@@ -1,6 +1,6 @@
 import StatCard from "../../../../components/ui/StatCard";
 import BlockOverview from "../../../../features/admin/components/BlockOverview";
-import HostelOverview from "../../../../features/admin/components/hostel-overview/HostelOverview";
+import HostelOverview from "../../../../features/admin/components/HostelOverview";
 
 export default function AdminDashboard() {
   return (

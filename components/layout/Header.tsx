@@ -1,10 +1,16 @@
 import { Menu, UserRound } from "lucide-react";
 
-export default function Header() {
+interface HeaderProps {
+  onMenuClick: () => void;
+}
+
+export default function Header({ onMenuClick }: HeaderProps) {
   return (
     <header className="flex justify-between items-center gap-4">
       <div className="flex items-center gap-2 md:gap-4">
-        <Menu className="cursor-pointer" />
+        <button className="lg:hidden cursor-pointer" onClick={onMenuClick}>
+          <Menu />
+        </button>
         <h1 className="md:text-lg">Accomodation Portal</h1>
       </div>
       <div className="flex items-center gap-4">

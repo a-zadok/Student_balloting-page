@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpFromDot, ChevronRight } from "lucide-react";
-import ScrollableButtons from "../../../../components/ui/ScrollableButtons";
+import ScrollableButtons from "../../../components/ui/ScrollableButtons";
 
 export default function HostelOverview() {
   const buttonArr = [
