@@ -1,5 +1,4 @@
 import Header from "../../../components/layout/Header";
-import Sidebar from "../../../components/layout/Sidebar";
 
 export default function AdminLayout({
   children,
@@ -7,8 +6,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Sidebar />
+    <div className="flex flex-col min-h-screen py-2 px-4">
       <Header />
       <main>{children}</main>
     </div>

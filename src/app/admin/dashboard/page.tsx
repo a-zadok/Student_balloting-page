@@ -4,7 +4,7 @@ import HostelOverview from "../../../../features/admin/components/hostel-overvie
 
 export default function AdminDashboard() {
   return (
-    <section className="flex gap-8 py-8">
+    <section className="flex min-w-0 gap-8 py-8">
       <div className="flex min-w-0 flex-1 flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-bold md:text-2xl">
@@ -24,7 +24,7 @@ export default function AdminDashboard() {
         <HostelOverview />
       </div>
 
-      <aside className="hidden lg:flex w-full max-w-100 shrink-0 flex-col gap-6">
+      <aside className="hidden w-80 shrink-0 flex-col gap-6 lg:flex">
         <div className="flex flex-col gap-4">
           <StatCard value={640} label="Total number of rooms" />
           <StatCard value={428} label="Total number of allocated rooms" />
