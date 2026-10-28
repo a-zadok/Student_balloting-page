@@ -1,4 +1,5 @@
 import StatCard from "../../../../components/ui/StatCard";
+import BlockOverview from "../../../../features/admin/components/BlockOverview";
 import HostelOverview from "../../../../features/admin/components/hostel-overview/HostelOverview";
 
 export default function AdminDashboard() {
@@ -23,10 +24,14 @@ export default function AdminDashboard() {
         <HostelOverview />
       </div>
 
-      <aside className="hidden lg:flex w-full max-w-xs shrink-0 flex-col gap-4">
-        <StatCard value={640} label="Total number of rooms" />
-        <StatCard value={428} label="Total number of allocated rooms" />
-        <StatCard value={212} label="Total number of available rooms" />
+      <aside className="hidden lg:flex w-full max-w-100 shrink-0 flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <StatCard value={640} label="Total number of rooms" />
+          <StatCard value={428} label="Total number of allocated rooms" />
+          <StatCard value={212} label="Total number of available rooms" />
+        </div>
+
+        <BlockOverview />
       </aside>
     </section>
   );
