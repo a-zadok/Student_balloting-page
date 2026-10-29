@@ -1,8 +1,21 @@
-import StatCard from "../../../../components/ui/StatCard";
+import { Suspense } from "react";
+import StatCardSkeleton from "../../../../components/ui/StatCardSkeleton";
 import BlockOverview from "../../../../features/admin/components/BlockOverview";
 import HostelOverview from "../../../../features/admin/components/HostelOverview";
+import RoomStatCards from "../../../../features/admin/components/RoomStatCards";
 import { requireRole } from "@/lib/session";
+
 export const instant = false;
+
+function CardsFallback() {
+  return (
+    <>
+      <StatCardSkeleton />
+      <StatCardSkeleton />
+      <StatCardSkeleton />
+    </>
+  );
+}
 
 export default async function AdminDashboard() {
   const me = await requireRole("admin");
@@ -20,9 +33,9 @@ export default async function AdminDashboard() {
         </div>
 
         <div className="flex flex-col gap-2 lg:hidden">
-          <StatCard value={640} label="Total number of rooms" />
-          <StatCard value={428} label="Total number of allocated rooms" />
-          <StatCard value={212} label="Total number of available rooms" />
+          <Suspense fallback={<CardsFallback />}>
+            <RoomStatCards />
+          </Suspense>
         </div>
 
         <HostelOverview />
@@ -30,9 +43,9 @@ export default async function AdminDashboard() {
 
       <aside className="hidden w-80 shrink-0 flex-col gap-6 lg:flex">
         <div className="flex flex-col gap-4">
-          <StatCard value={640} label="Total number of rooms" />
-          <StatCard value={428} label="Total number of allocated rooms" />
-          <StatCard value={212} label="Total number of available rooms" />
+          <Suspense fallback={<CardsFallback />}>
+            <RoomStatCards />
+          </Suspense>
         </div>
 
         <BlockOverview />
