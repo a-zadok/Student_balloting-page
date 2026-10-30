@@ -21,7 +21,7 @@ export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
     {
       label: "Room Management",
       icon: BedSingle,
-      href: "/#",
+      href: "/admin/room-management",
     },
   ];
 

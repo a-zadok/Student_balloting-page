@@ -1,5 +1,6 @@
 import { requireRole } from "@/lib/session";
 import AdminLayout from "./AdminLayout";
+export const instant = false;
 
 export default async function Layout({
   children,
