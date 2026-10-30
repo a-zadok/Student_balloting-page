@@ -1,6 +1,5 @@
 import { ArrowUpFromDot, ChevronRight } from "lucide-react";
-import { api } from "@/lib/api";
-import { BlockSummary } from "@/lib/types";
+import { getBlockSummary } from "@/lib/blockSummary";
 
 function ordinal(n: number) {
   const s = ["th", "st", "nd", "rd"];
@@ -13,7 +12,7 @@ export default async function FloorList({
 }: {
   blockNumber: number;
 }) {
-  const summary = await api<BlockSummary>(`/blocks/${blockNumber}/floors`);
+  const summary = await getBlockSummary(blockNumber);
 
   return (
     <ul className="flex flex-col gap-4 md:gap-6">

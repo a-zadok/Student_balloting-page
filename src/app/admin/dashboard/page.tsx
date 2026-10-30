@@ -5,6 +5,7 @@ import HostelOverview from "../../../../features/admin/components/HostelOverview
 import HostelOverviewSkeleton from "../../../../features/admin/components/HostelOverviewSkeleton";
 import RoomStatCards from "../../../../features/admin/components/RoomStatCards";
 import { requireRole } from "@/lib/session";
+import BlockOverviewSkeleton from "../../../../features/admin/components/BlockOverviewSkeleton";
 
 export const instant = false;
 
@@ -57,7 +58,9 @@ export default async function AdminDashboard({
           </Suspense>
         </div>
 
-        <BlockOverview />
+        <Suspense fallback={<BlockOverviewSkeleton />}>
+          <BlockOverview requested={requested} />
+        </Suspense>
       </aside>
     </section>
   );
