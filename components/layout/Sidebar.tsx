@@ -3,6 +3,7 @@ import { BedSingle, House, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/app/actions/auth";
+import Image from "next/image";
 
 interface SidebarProps {
   setIsSidebarOpen: () => void;
@@ -34,8 +35,19 @@ export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div>
-          <div className="bg-button-selected text-white p-8">
-            University of Lagos
+          <div className="flex items-center bg-button-selected text-white p-4">
+            <Image
+              src="/unilag-logo.png"
+              height={60}
+              width={60}
+              alt="Unilag Logo"
+            />
+            <div>
+              <h1 className="text-lg font-bold">University of Lagos</h1>
+              <p className="text-text-secondary text-sm">
+                Student Hostel Ballot System
+              </p>
+            </div>
           </div>
 
           <div className="py-8 px-6">

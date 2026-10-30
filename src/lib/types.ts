@@ -14,6 +14,7 @@ export type BlockSummary = {
   available_rooms: number;
   allocated_rooms: number;
   restricted_rooms: number;
+  utility_rooms: number;
   small_rooms: number;
   large_rooms: number;
   floors: FloorSUmmary[];
@@ -25,6 +26,7 @@ export type FloorSUmmary = {
   available_rooms: number;
   allocated_rooms: number;
   restricted_rooms: number;
+  utility_rooms: number;
   small_rooms: number;
   large_rooms: number;
 };

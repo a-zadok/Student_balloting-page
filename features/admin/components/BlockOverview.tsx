@@ -53,6 +53,7 @@ export default async function BlockOverview({
           allocated={summary.allocated_rooms}
           available={summary.available_rooms}
           restricted={summary.restricted_rooms}
+          utility={summary.utility_rooms}
         />
       </div>
 

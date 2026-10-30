@@ -13,7 +13,9 @@ export default function Header({ onMenuClick, me }: HeaderProps) {
         <button className="lg:hidden cursor-pointer" onClick={onMenuClick}>
           <Menu />
         </button>
-        <h1 className="md:text-lg">Accomodation Portal</h1>
+        <h1 className="md:text-lg lg:text-3xl font-bold">
+          Accomodation Portal
+        </h1>
       </div>
       <div className="flex items-center gap-4">
         <div className="bg-container h-10 w-10 rounded-full flex items-center justify-center cursor-pointer">
