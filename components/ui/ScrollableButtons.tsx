@@ -1,14 +1,26 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ScrollableButtonsProps {
-  buttonArr: string[];
+  buttons?: { label: string; blockNumber: number }[];
+  selected?: number;
+  buttonArr?: string[];
 }
 
-const ScrollableButtons = ({ buttonArr }: ScrollableButtonsProps) => {
-  const [selectedButton, setSelectedButton] = useState(0);
+const ScrollableButtons = ({
+  buttons,
+  selected,
+  buttonArr,
+}: ScrollableButtonsProps) => {
+  const linked = buttons !== undefined;
+  const items =
+    buttons ??
+    (buttonArr ?? []).map((label, i) => ({ label, blockNumber: i + 1 }));
+
+  const [localSelected, setLocalSelected] = useState(0);
   const listRef = useRef<HTMLUListElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
   const [canScrollRight, setCanScrollRight] = useState<boolean>(false);
@@ -29,7 +41,7 @@ const ScrollableButtons = ({ buttonArr }: ScrollableButtonsProps) => {
       el?.removeEventListener("scroll", updateArrows);
       window.removeEventListener("resize", updateArrows);
     };
-  }, [updateArrows, buttonArr]);
+  }, [updateArrows, items.length]);
 
   const scroll = (direction: 1 | -1): void => {
     const el = listRef.current;
@@ -56,15 +68,33 @@ const ScrollableButtons = ({ buttonArr }: ScrollableButtonsProps) => {
         ref={listRef}
         className="flex items-center gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {buttonArr.map((button, index) => (
-          <li
-            key={index}
-            className={`${selectedButton === index ? "bg-button-selected text-white" : "bg-container"} w-fit shrink-0 whitespace-nowrap py-1 md:py-2 px-4 md:px-6 rounded-md cursor-pointer`}
-            onClick={() => setSelectedButton(index)}
-          >
-            {button}
-          </li>
-        ))}
+        {items.map((item, index) => {
+          const active = linked
+            ? item.blockNumber === selected
+            : index === localSelected;
+          const pill = `${active ? "bg-button-selected text-white" : "bg-container"} whitespace-nowrap py-1 md:py-2 px-4 md:px-6 rounded-md`;
+
+          return linked ? (
+            <li key={item.blockNumber} className="w-fit shrink-0">
+              <Link
+                href={`?block=${item.blockNumber}`}
+                scroll={false}
+                aria-current={active ? "page" : undefined}
+                className={`${pill} block`}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ) : (
+            <li
+              key={index}
+              className={`${pill} w-fit shrink-0 cursor-pointer`}
+              onClick={() => setLocalSelected(index)}
+            >
+              {item.label}
+            </li>
+          );
+        })}
       </ul>
 
       {canScrollRight && (

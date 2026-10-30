@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import StatCardSkeleton from "../../../../components/ui/StatCardSkeleton";
 import BlockOverview from "../../../../features/admin/components/BlockOverview";
 import HostelOverview from "../../../../features/admin/components/HostelOverview";
+import HostelOverviewSkeleton from "../../../../features/admin/components/HostelOverviewSkeleton";
 import RoomStatCards from "../../../../features/admin/components/RoomStatCards";
 import { requireRole } from "@/lib/session";
 
@@ -17,8 +18,14 @@ function CardsFallback() {
   );
 }
 
-export default async function AdminDashboard() {
+export default async function AdminDashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ block?: string }>;
+}) {
   const me = await requireRole("admin");
+  const { block } = await searchParams;
+  const requested = Number(block) || undefined;
 
   return (
     <section className="flex min-w-0 gap-8 py-8">
@@ -38,7 +45,9 @@ export default async function AdminDashboard() {
           </Suspense>
         </div>
 
-        <HostelOverview />
+        <Suspense fallback={<HostelOverviewSkeleton />}>
+          <HostelOverview requested={requested} />
+        </Suspense>
       </div>
 
       <aside className="hidden w-80 shrink-0 flex-col gap-6 lg:flex">
