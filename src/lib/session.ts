@@ -1,5 +1,7 @@
+import "server-only";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 
 export type Me = {
   user_id: string;
@@ -18,7 +20,8 @@ export function dashboardPath(role: Me["role"]) {
 }
 
 // Asks the API who owns the token. Sends you to /login if there is no valid token.
-export async function getMe(): Promise<Me> {
+
+export const getMe = cache(async (): Promise<Me> => {
   const token = await getToken();
   if (!token) redirect("/login");
 
@@ -31,7 +34,7 @@ export async function getMe(): Promise<Me> {
   if (!res.ok) throw new Error("Could not load your account.");
 
   return res.json();
-}
+});
 
 // Put at the top of a protected page. The right role gets in,
 // anyone else is sent to their own dashboard.

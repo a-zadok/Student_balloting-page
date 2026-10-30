@@ -1,10 +1,12 @@
+import { Me } from "@/lib/session";
 import { Menu, UserRound } from "lucide-react";
 
 interface HeaderProps {
   onMenuClick: () => void;
+  me: Me;
 }
 
-export default function Header({ onMenuClick }: HeaderProps) {
+export default function Header({ onMenuClick, me }: HeaderProps) {
   return (
     <header className="flex justify-between items-center gap-4">
       <div className="flex items-center gap-2 md:gap-4">
@@ -18,7 +20,9 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <UserRound />
         </div>
         <div className="hidden md:block">
-          <p className="font-bold">Mrs. A. Adeyemi</p>
+          <p className="font-bold">
+            {me.admin?.first_name} {me.admin?.last_name}
+          </p>
           <p className="text-sm text-text-secondary">Hostel Administrator</p>
         </div>
       </div>
