@@ -35,7 +35,7 @@ export default async function AdminDashboard({
           <h2 className="text-xl font-bold md:text-2xl">
             Welcome Back, {me.admin?.first_name} {me.admin?.last_name}
           </h2>
-          <p className="md:text-lg">
+          <p className="md:text-lg text-text-secondary">
             Here&apos;s what&apos;s happening with the hostel allocation.
           </p>
         </div>
