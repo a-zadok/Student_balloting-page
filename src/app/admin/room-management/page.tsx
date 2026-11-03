@@ -2,8 +2,16 @@ import { ArrowDownToLine } from "lucide-react";
 import RoomFilter from "../../../../features/admin/components/RoomFilter";
 import RoomList from "../../../../features/admin/components/RoomList";
 import RoomTable from "../../../../features/admin/components/RoomTable";
+import RoomSummary from "../../../../features/admin/components/RoomSummary";
 
-export default function RoomManagement() {
+export default async function RoomManagement({
+  searchParams,
+}: {
+  searchParams: Promise<{ block?: string }>;
+}) {
+  const { block } = await searchParams;
+  const requested = Number(block) || undefined;
+
   return (
     <section className="flex flex-col min-w-0 gap-8 py-8">
       <div className="flex items-end justify-between">
@@ -31,6 +39,9 @@ export default function RoomManagement() {
         <div className="hidden md:flex md:gap-8">
           <div className="flex-1">
             <RoomTable />
+          </div>
+          <div className="hidden lg:block w-80">
+            <RoomSummary requested={requested} />
           </div>
         </div>
       </div>
