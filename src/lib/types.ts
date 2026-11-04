@@ -17,6 +17,9 @@ export type BlockSummary = {
   utility_rooms: number;
   small_rooms: number;
   large_rooms: number;
+  total_bedspaces: number;
+  allocated_bedspaces: number;
+  available_bedspaces: number;
   floors: FloorSUmmary[];
 };
 
@@ -29,6 +32,9 @@ export type FloorSUmmary = {
   utility_rooms: number;
   small_rooms: number;
   large_rooms: number;
+  total_bedspaces: number;
+  allocated_bedspaces: number;
+  available_bedspaces: number;
 };
 
 export type BlockNumber = {
