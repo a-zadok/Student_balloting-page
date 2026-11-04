@@ -41,3 +41,26 @@ export type BlockNumber = {
   block_number: number;
   gender_type: "Male" | "Female";
 };
+
+export type RoomRow = {
+  room_id: string;
+  room_number: number;
+  block_number: number;
+  floor_number: number;
+  gender_type: "Male" | "Female";
+  room_type: "S" | "L" | "Other";
+  capacity: number;
+  allocated_beds: number;
+  available_beds: number;
+  room_status: "Available" | "Allocated" | "Utility" | "Restricted";
+};
+
+export type Paginated<T> = {
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
+  from: number | null;
+  to: number | null;
+  data: T[];
+};
