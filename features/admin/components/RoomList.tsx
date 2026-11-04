@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { getRooms } from "@/lib/rooms";
 import { ordinal, roomKind } from "@/lib/format";
 import RoomPagination from "./RoomPagination";
+import Link from "next/link";
 
 export default async function RoomList({ query }: { query: string }) {
   const result = await getRooms(query);
@@ -27,12 +28,13 @@ export default async function RoomList({ query }: { query: string }) {
                 <div className="flex items-center gap-2">
                   <p className="text-text-secondary text-sm">{r.room_status}</p>
 
-                  <button
+                  <Link
                     className="cursor-pointer"
                     aria-label={`View room ${r.room_number}`}
+                    href={`/admin/room-management/${r.room_id}`}
                   >
                     <ChevronRight />
-                  </button>
+                  </Link>
                 </div>
               </div>
               <p className="text-text-secondary text-sm">

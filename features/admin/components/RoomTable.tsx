@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { getRooms } from "@/lib/rooms";
 import { ordinal, roomKind, statusLabel } from "@/lib/format";
 import RoomPagination from "./RoomPagination";
+import Link from "next/link";
 
 const cell =
   "p-3 border-y border-border first:border-l first:rounded-l-md last:border-r last:rounded-r-md";
@@ -59,13 +60,14 @@ export default async function RoomTable({ query }: { query: string }) {
                     {statusLabel(room.room_status)}
                   </td>
                   <td className={`${cell} w-12`}>
-                    <button
+                    <Link
                       type="button"
                       aria-label={`View room ${room.room_number}`}
                       className="cursor-pointer"
+                      href={`/admin/room-management/${room.room_id}`}
                     >
                       <ChevronRight size={20} className="text-text-secondary" />
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               );
