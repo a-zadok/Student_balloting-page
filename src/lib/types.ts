@@ -64,3 +64,29 @@ export type Paginated<T> = {
   to: number | null;
   data: T[];
 };
+
+export type RoomBed = {
+  bed_id: string;
+  bed_label: string;
+  status: "Available" | "Allocated";
+  student: {
+    matric_number: string;
+    name: string;
+    department: string | null;
+    level: number | null;
+  } | null;
+};
+
+export type RoomDetail = {
+  room_id: string;
+  room_number: number;
+  block_number: number;
+  gender_type: "Male" | "Female";
+  floor_number: number;
+  room_type: "S" | "L" | "Other";
+  room_status: "Available" | "Allocated" | "Utility" | "Restricted";
+  capacity: number;
+  allocated_beds: number;
+  available_beds: number;
+  beds: RoomBed[];
+};

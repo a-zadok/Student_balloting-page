@@ -58,7 +58,7 @@ export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
                   <Link
                     key={nav.label}
                     href={nav.href}
-                    className={`${pathname === nav.href ? "bg-button" : "hover:bg-button/40"} flex items-center gap-2 p-4 rounded-md cursor-pointer`}
+                    className={`${pathname.includes(nav.href) ? "bg-button" : "hover:bg-button/40"} flex items-center gap-2 p-4 rounded-md cursor-pointer`}
                   >
                     <Icon />
                     {nav.label}
