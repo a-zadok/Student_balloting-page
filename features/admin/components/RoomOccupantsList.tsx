@@ -1,5 +1,6 @@
 import { RoomDetail } from "@/lib/types";
 import { Plus, UserRound } from "lucide-react";
+import AssignStudentModal from "./AssignStudentModal";
 
 export default async function RoomOccupantsList({
   roomDetail,
@@ -60,19 +61,19 @@ export default async function RoomOccupantsList({
         })}
       </ul>
 
-      {roomDetail.allocated_beds < roomDetail.capacity && (
+      {firstAvailableBed && (
         <div className="flex flex-col gap-2 border border-dashed p-2 rounded-md">
           <p className="flex gap-4">
             <span className="bg-container w-fit px-1 rounded-full">
-              {firstAvailableBed?.bed_label}
+              {firstAvailableBed.bed_label}
             </span>
             Vacant - Bed available for student allocation
           </p>
 
-          <button className="flex items-center gap-2 justify-center p-2 bg-button-selected text-white w-full rounded-md cursor-pointer">
-            <Plus />
-            Assign Student
-          </button>
+          <AssignStudentModal
+            bedId={firstAvailableBed.bed_id}
+            bedLabel={firstAvailableBed.bed_label}
+          />
         </div>
       )}
     </div>

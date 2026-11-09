@@ -15,7 +15,6 @@ export default async function RoomDetails({
   await requireRole("admin");
   const { roomId } = await params;
   const r = await getRoomDetail(roomId);
-  console.log(r);
 
   return (
     <section className="flex flex-col min-w-0 gap-8 py-8">
