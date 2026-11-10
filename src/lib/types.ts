@@ -90,3 +90,12 @@ export type RoomDetail = {
   available_beds: number;
   beds: RoomBed[];
 };
+
+export type StudentResult = {
+  matric_number: string;
+  name: string;
+  department: string | null;
+  level: number | null;
+  gender: "Male" | "Female" | null;
+  allocated: boolean;
+};

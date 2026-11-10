@@ -1,5 +1,5 @@
 import { RoomDetail } from "@/lib/types";
-import { Plus, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
 import AssignStudentModal from "./AssignStudentModal";
 
 export default async function RoomOccupantsList({
@@ -71,8 +71,10 @@ export default async function RoomOccupantsList({
           </p>
 
           <AssignStudentModal
+            roomId={roomDetail.room_id}
             bedId={firstAvailableBed.bed_id}
             bedLabel={firstAvailableBed.bed_label}
+            gender={roomDetail.gender_type}
           />
         </div>
       )}
