@@ -24,7 +24,7 @@ export default async function RoomDetails({
           <ArrowLeft />
         </Link>
 
-        <EditRoomModal />
+        <EditRoomModal room={r} />
       </div>
 
       <div className="flex items-center justify-between">
@@ -45,7 +45,7 @@ export default async function RoomDetails({
             <MoveLeft size={18} />
             Back to Rooms
           </Link>
-          <EditRoomModal />
+          <EditRoomModal room={r} />
         </div>
       </div>
 
