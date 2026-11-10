@@ -1,9 +1,10 @@
-import { ArrowLeft, MoveLeft, Pencil } from "lucide-react";
+import { ArrowLeft, MoveLeft } from "lucide-react";
 import RoomOccupantsList from "../../../../../features/admin/components/RoomOccupantsList";
 import RoomOccupantsTable from "../../../../../features/admin/components/RoomOccupantsTable";
 import Link from "next/link";
 import { requireRole } from "@/lib/session";
 import { getRoomDetail } from "@/lib/roomDetail";
+import EditRoomModal from "../../../../../features/admin/components/EditRoomModal";
 
 export const instant = false;
 
@@ -23,10 +24,7 @@ export default async function RoomDetails({
           <ArrowLeft />
         </Link>
 
-        <button className="flex items-center gap-2 bg-button-selected text-sm text-white p-2 rounded-md cursor-pointer">
-          <Pencil size={18} />
-          Edit Room
-        </button>
+        <EditRoomModal />
       </div>
 
       <div className="flex items-center justify-between">
@@ -47,10 +45,7 @@ export default async function RoomDetails({
             <MoveLeft size={18} />
             Back to Rooms
           </Link>
-          <button className="flex items-center gap-2 bg-button-selected text-white py-2 px-4 rounded-md cursor-pointer">
-            <Pencil size={18} />
-            Edit Room
-          </button>
+          <EditRoomModal />
         </div>
       </div>
 
