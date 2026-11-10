@@ -1,5 +1,6 @@
 import { ArrowUpFromDot, ChevronRight } from "lucide-react";
 import { getBlockSummary } from "@/lib/blockSummary";
+import Link from "next/link";
 
 function ordinal(n: number) {
   const s = ["th", "st", "nd", "rd"];
@@ -51,12 +52,13 @@ export default async function FloorList({
               <p className="text-end">{f.available_rooms}</p>
               <p className="text-text-secondary text-sm">rooms available</p>
             </div>
-            <button
+            <Link
               className="cursor-pointer"
               aria-label={`View ${ordinal(f.floor_number)} floor`}
+              href={`/admin/room-management/?block=${summary.block_number}&floor=${f.floor_number}`}
             >
               <ChevronRight />
-            </button>
+            </Link>
           </div>
         </li>
       ))}
