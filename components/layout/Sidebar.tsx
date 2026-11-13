@@ -1,15 +1,17 @@
 "use client";
-import { BedSingle, House, LogOut } from "lucide-react";
+import { BedSingle, FileText, House, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/app/actions/auth";
 import Image from "next/image";
+import { Me } from "@/lib/types";
 
 interface SidebarProps {
   setIsSidebarOpen: () => void;
+  me: Me;
 }
 
-export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
+export default function Sidebar({ setIsSidebarOpen, me }: SidebarProps) {
   const pathname = usePathname();
 
   const adminNav = [
@@ -24,6 +26,23 @@ export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
       href: "/admin/room-management",
     },
   ];
+
+  const studentNav = [
+    {
+      label: "Dashboard",
+      icon: House,
+      href: "/student/dashboard",
+    },
+    {
+      label: "Accomodation Application",
+      icon: FileText,
+      href: "/student/application",
+    },
+  ];
+
+  console.log(me);
+
+  const nav = me?.role === "admin" ? adminNav : studentNav;
 
   return (
     <aside
@@ -52,7 +71,7 @@ export default function Sidebar({ setIsSidebarOpen }: SidebarProps) {
 
           <div className="py-8 px-6">
             <nav className="flex flex-col gap-4">
-              {adminNav.map((nav) => {
+              {nav.map((nav) => {
                 const Icon = nav.icon;
                 return (
                   <Link

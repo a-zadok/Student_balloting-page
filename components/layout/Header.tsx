@@ -23,9 +23,21 @@ export default function Header({ onMenuClick, me }: HeaderProps) {
         </div>
         <div className="hidden md:block">
           <p className="font-bold">
-            {me.admin?.first_name} {me.admin?.last_name}
+            {me?.role === "admin" ? (
+              <span>
+                {me.admin?.first_name} {me.admin?.last_name}
+              </span>
+            ) : (
+              <span>
+                {me.student?.first_name} {me.student?.last_name}
+              </span>
+            )}
           </p>
-          <p className="text-sm text-text-secondary">Hostel Administrator</p>
+          <p className="text-sm text-text-secondary">
+            {me?.role === "admin"
+              ? "Hostel Administrator"
+              : me.student?.student_id}{" "}
+          </p>
         </div>
       </div>
     </header>

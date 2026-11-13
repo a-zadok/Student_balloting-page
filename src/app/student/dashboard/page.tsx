@@ -1,4 +1,4 @@
-﻿
+﻿import { requireRole } from "@/lib/session";
 import {
   Bell,
   CalendarDays,
@@ -64,20 +64,25 @@ function ApplicationIllustration() {
       <path d="m80 12 21 22H59l21-22Z" fill="#d1d5db" />
       <path d="m35 45 45-9 45 9v83l-45 18-45-18V45Z" fill="#cbd5e1" />
       <path d="m35 45 45 12 45-12-5 83-40 18-40-18-5-83Z" fill="#d1d5db" />
-      <path d="m53 58 52 6v8l-52-6v-8Zm0 18 52 6v8l-52-6v-8Zm0 18 34 4v8l-34-4v-8Z" fill="#818cf8" />
+      <path
+        d="m53 58 52 6v8l-52-6v-8Zm0 18 52 6v8l-52-6v-8Zm0 18 34 4v8l-34-4v-8Z"
+        fill="#818cf8"
+      />
       <path d="m79 117 12-13 12 10 23-25 12 11-33 38-26-21Z" fill="#84a84a" />
     </svg>
   );
 }
 
-export default function StudentDashboardPage() {
+export default async function StudentDashboardPage() {
+  const me = await requireRole("student");
+
   return (
-    <div>
-      <div className="mb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-          Welcome Back, Tola!
-        </h1>
-        <p className="mt-1 text-sm text-slate-700 sm:text-base">
+    <section className="flex flex-col min-w-0 gap-8 py-8">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xl font-bold md:text-2xl">
+          Welcome Back, {me.student?.first_name} {me.student?.last_name}
+        </h2>
+        <p className="md:text-lg text-text-secondary">
           Manage your accommodation application and stay updated
         </p>
       </div>
@@ -132,7 +137,9 @@ export default function StudentDashboardPage() {
                       <p className="mt-1 text-xs leading-4 text-slate-500">
                         {announcement.body}
                       </p>
-                      <p className="mt-2 text-[11px] text-slate-500">{announcement.date}</p>
+                      <p className="mt-2 text-[11px] text-slate-500">
+                        {announcement.date}
+                      </p>
                     </div>
                   </li>
                 ))}
@@ -183,8 +190,12 @@ export default function StudentDashboardPage() {
                   key={unit}
                   className="rounded-lg border border-[#e1ebfa] bg-white px-1 py-2"
                 >
-                  <p className="text-xl font-bold leading-5 text-[#10284f]">{value}</p>
-                  <p className="mt-1 text-[10px] font-medium text-slate-700">{unit}</p>
+                  <p className="text-xl font-bold leading-5 text-[#10284f]">
+                    {value}
+                  </p>
+                  <p className="mt-1 text-[10px] font-medium text-slate-700">
+                    {unit}
+                  </p>
                 </div>
               ))}
             </div>
@@ -208,7 +219,9 @@ export default function StudentDashboardPage() {
                     {index + 1}
                   </span>
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-900">{step.title}</h3>
+                    <h3 className="text-xs font-semibold text-slate-900">
+                      {step.title}
+                    </h3>
                     <p className="mt-1 text-[11px] leading-[1.4] text-slate-500">
                       {step.description}
                     </p>
@@ -219,6 +232,6 @@ export default function StudentDashboardPage() {
           </section>
         </aside>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,3 +1,11 @@
+export type Me = {
+  user_id: string;
+  email: string;
+  role: "admin" | "student";
+  admin: { admin_id: string; first_name: string; last_name: string } | null;
+  student: { student_id: string; first_name: string; last_name: string } | null;
+};
+
 export type RoomStats = {
   total_rooms: number;
   available_rooms: number;

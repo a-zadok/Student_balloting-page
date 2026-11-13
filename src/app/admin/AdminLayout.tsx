@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "../../../components/layout/Header";
 import Sidebar from "../../../components/layout/Sidebar";
 import { usePathname } from "next/navigation";
-import { Me } from "@/lib/session";
+import { Me } from "@/lib/types";
 
 export default function AdminLayout({
   children,
@@ -41,7 +41,10 @@ export default function AdminLayout({
       <div
         className={`${isSidebarOpen ? "block" : "hidden"} lg:block shrink-0`}
       >
-        <Sidebar setIsSidebarOpen={() => setIsSidebarOpen((prev) => !prev)} />
+        <Sidebar
+          setIsSidebarOpen={() => setIsSidebarOpen((prev) => !prev)}
+          me={me}
+        />
       </div>
 
       <main className="min-w-0 flex-1 overflow-y-auto px-4 py-2">
